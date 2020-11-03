@@ -1,15 +1,29 @@
 $(document).ready(function () {
 
   // bottone next
-  $(".next").click(nextImg);
+  $(".next").click(nextImg).click(nextCerchio);
 
   // bottone prev
-  $(".prev").click(prevImg);
+  $(".prev").click(prevImg).click(prevCerchio);
 
+  // funzionamento frecce direzzionali
+  $(document).keyup(function(e){
 
+    // se premo freccia destra
+    if (e.keyCode === 39){
+      nextImg();
+      nextCerchio();
 
+    // se premo freccia sinistra
+    } else if (e.keyCode === 37){
+      prevImg();
+      prevCerchio();
+    }
+
+  });
 
   //FUNZIONI
+
   // funzione per bottone next
   function nextImg() {
 
@@ -27,7 +41,6 @@ $(document).ready(function () {
     }
 
   }
-
 
   // funzione per bottone prev
   function prevImg() {
@@ -47,5 +60,40 @@ $(document).ready(function () {
 
   }
 
+  // funzione per cerchio next
+  function nextCerchio() {
+
+    var cicleAttivo = $(".nav i.active");
+
+    cicleAttivo.removeClass("active");
+
+    // se sono all'ultimo cerchio torna al primo
+    if (cicleAttivo.hasClass("last")){
+      $(".nav i.first").addClass("active");
+
+    // altrimenti il cerchio successivo diventa quello active
+    } else {
+      cicleAttivo.next(".nav i").addClass("active");
+    }
+
+  }
+
+  // funzione per cerchio prev
+  function prevCerchio() {
+
+    var cicleAttivo = $(".nav i.active");
+
+    cicleAttivo.removeClass("active");
+
+    // se sono al primo cerchio torna all'ultimo
+    if (cicleAttivo.hasClass("first")){
+      $(".nav i.last").addClass("active");
+
+    // altrimenti il cerchio precedente diventa quello active
+    } else {
+      cicleAttivo.prev(".nav i").addClass("active");
+    }
+
+  }
 
 });
