@@ -7,15 +7,15 @@ $(document).ready(function () {
   $(".prev").click(prevImg).click(prevCerchio);
 
   // funzionamento frecce direzzionali
-  $(document).keyup(function(e){
+  $(document).keydown(function(e){
 
     // se premo freccia destra
-    if (e.keyCode === 39){
+    if (e.which === 39){
       nextImg();
       nextCerchio();
 
     // se premo freccia sinistra
-    } else if (e.keyCode === 37){
+    } else if (e.which === 37){
       prevImg();
       prevCerchio();
     }
